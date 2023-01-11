@@ -26,14 +26,18 @@ public class MyApplication {
 
         MessageService service = context.getBean("mailService", MessageService.class);
         MessageService service2 = context.getBean("mailService", MessageService.class);
-
+        MessageService service3 = context.getBean("smsService",MessageService.class);
+/*
         if (service == service2) {
             System.out.println("Ayni");
         }else{
             System.out.println("Farkli");
         }
 
+ */
+
         service.sendMessage(message);
+        service3.sendMessage(message);
 
         context.close(); //programi kapatirken olsan beanleri yok ediyoruz.
 

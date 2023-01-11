@@ -4,6 +4,7 @@ import com.tpe.domain.Message;
 import com.tpe.repository.Repository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,10 @@ import org.springframework.stereotype.Component;
 @Scope("prototype") //Bu anatation getBean() her cagirildiginda yeni obje üreterek getirir. Ve Bean default da singleton'dir.
 //Scope anatation bu sayede eger run class'in da bean'den getBean denildiginde  farkli yeni obje olusturur.
 public class MailService implements MessageService {
+
+    @Value("${app.email}") //Bu anatation ile resources klasöründe bulunan properties dosyasindaki degeri almamizi sagliyor.
+    private String email;
+
 /* 1)Field Injection
     @Autowired //bu anatation altindaki tanimlamaya bakar ve dependency injectin yapar. Bu sekilde istedigim yerde kullanabilirim.
             //Eger obje hic olusturulmamis ise singleton method olarak obje olusturur. eger daha önceden bu obje olusturulmus ise
